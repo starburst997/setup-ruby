@@ -74909,7 +74909,7 @@ async function setupRuby(options = {}) {
 
   if (inputs['bundler-cache'] === 'true') {
     if (inputs['add-platform'] === 'true') {
-      bundler.addPlatform((await core.platform.getDetails()).platform)
+      bundler.addPlatform((await core.platform.getDetails()).arch)
     }
     
     await common.time('bundle install', async () =>
