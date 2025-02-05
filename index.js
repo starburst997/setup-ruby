@@ -109,6 +109,8 @@ export async function setupRuby(options = {}) {
       bundler.addPlatform(lockFile)
     }
     
+    console.log(`???????`)
+
     await common.time('bundle install', async () =>
       bundler.bundleInstall(gemfile, lockFile, platform, engine, version, bundlerVersion, inputs['cache-version']))
   }
