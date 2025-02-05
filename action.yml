@@ -26,7 +26,7 @@ inputs:
     description: 'Run "bundle install", and cache the result automatically. Either true or false.'
     default: 'false'
   add-platform:
-    description: 'Run "bundle lock --add-platform", making sure the runner's platform is in Gemfile.lock'
+    description: 'Run "bundle lock --add-platform", making sure the runner\'s platform is in Gemfile.lock'
     default: 'false'
   working-directory:
     description: 'The working directory to use for resolving paths for .ruby-version, .tool-versions, mise.toml and Gemfile.lock.'
