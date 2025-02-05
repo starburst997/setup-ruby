@@ -232,6 +232,12 @@ export async function bundleInstall(gemfile, lockFile, platform, engine, rubyVer
   return true
 }
 
+export async function addPlatform(platform) {
+  console.log(`Add Platform: ${platform}`)
+  await exec.exec('bundle', ['lock', '--add-platform', platform])
+  return true
+}
+
 async function computeBaseKey(platform, engine, version, lockFile, cacheVersion) {
   const cwd = process.cwd()
   const bundleWith = process.env['BUNDLE_WITH'] || ''
