@@ -247,7 +247,10 @@ async function bundleInstall(gemfile, lockFile, platform, engine, rubyVersion, b
   return true
 }
 
-async function addPlatform(platform) {
+async function addPlatform() {
+  const platformOutput = await exec.exec('ruby', ['-e', 'p Gem::Platform.local.to_s'])
+  console.log(`Platform Output: ${platformOutput}`)
+  const platform = platformOutput.slice(1, platformOutput.length - 1)
   console.log(`Add Platform: ${platform}`)
   await exec.exec('bundle', ['lock', '--add-platform', platform])
   return true
@@ -74909,7 +74912,7 @@ async function setupRuby(options = {}) {
 
   if (inputs['bundler-cache'] === 'true') {
     if (inputs['add-platform'] === 'true') {
-      bundler.addPlatform((await core.platform.getDetails()).name)
+      bundler.addPlatform()
     }
     
     await common.time('bundle install', async () =>
