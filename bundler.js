@@ -233,7 +233,8 @@ export async function bundleInstall(gemfile, lockFile, platform, engine, rubyVer
 }
 
 export async function addPlatform() {
-  const platform = (await exec.getExecOutput('ruby', ['-e', 'p Gem::Platform.local.to_s'])).stdout
+  const output = (await exec.getExecOutput('ruby', ['-e', 'p Gem::Platform.local.to_s'])).stdout
+  const platform = output.slice(1, output.length - 1)
   console.log(`Add Platform: ${platform}`)
   await exec.exec('bundle', ['lock', '--add-platform', platform])
   return true
